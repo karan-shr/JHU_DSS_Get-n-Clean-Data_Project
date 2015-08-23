@@ -29,9 +29,13 @@ is a R script to collect, work with, and clean a data set. The basic description
   1. The *X, y* and *subject* data (text) files from **train** and **test** folders are loaded into and stored as data frames in R.
   2. Data frames *subject_joint, X_joint* and *y_joint* are created by row binding the test and train data files.
 
-3. Loading, cleaning and extracting the required (mean and SD data) using features.txt:
-  1. Load *features.txt* into R.
-  2. Remove round brackets and commas from feature names to simplify feature names.
-  3. Associate cleaned feature names with the *X_joint* data frame. 
-  4. Using *grep* command to extract only the desired (i.e. mean and std) data from the *X_joint* data frame.
-  
+3. Loading and extracting the required (mean and SD data) using features.txt:
+  1. Load *features.txt* into R and save it as *feature_names* data frame.
+  2. Associate the rows from *feature_names* as the column names for the *X_joint* data frame.
+  2. **Which features to extract**:
+    1. The included file *features_info.txt* provides a summary of the feauture names and thier nature. According to this file "mean()" and "std()" provide the mean and standard deviation values. Also "meanFreq()" is also a mean freuquency value. However, values such as "gravityMean" are averages in a signal window sample. 
+    2. Since this part of assignment i.e. choosing which values to extract is an open question [check forums]  (https://class.coursera.org/getdata-031/forum/thread?thread_id=28). I've decided to included only features with  the "mean" string and not any variables with string "Mean" e.g. "gravityMean". This gives me all features named having "mean()" "meanFreq()".
+    3. For standard deviation, all variables with the string "std()" are extracted.
+  3. The *grep* command to extract only the desired (i.e. mean and std) data from the *X_joint* data frame.
+4.
+  Remove round brackets and commas from feature names to simplify feature names.
