@@ -1,9 +1,5 @@
 #------------------------------------------------------------------------------
 #                             run_analysis.R script
-#
-# Steps undertaken in the script:
-# 1) Merging datasets
-
 #------------------------------------------------------------------------------
 
 ## setting the main working directory
@@ -11,6 +7,9 @@ setwd("/Users/karan/Box Sync/Coursera-DSS/03_GetData/week3_project/cousera_get-n
 
 ## navigating to the appropriate data folder
 setwd("./UCI HAR Dataset")
+
+## loading the data.table library
+library(data.table)
 
 
 #------------------------------------------------------------------------------
@@ -47,9 +46,39 @@ X_desired<-X_joint[,desiredColumns] #the subsetted data frame
 #------------------------------------------------------------------------------
 ## Step-3: Descriptive activity names to name the activities in the data set
 
-#### removing the parentheis from the names
-cleanFeatureNames<-gsub("\\(\\)","" ,featureNames[,2])
-#### removing single parenthesis by adding | between the two arguements
-cleanFeatureNames<-gsub("\\(|\\)","",cleanFeatureNames)
-#### removing commas
-cleanFeatureNames<-gsub(",","",cleanFeatureNames)
+### loading activity_labels.txt and making a new data frame
+activity_labels <- read.table("activity_labels.txt")
+### giving names to the columns
+colnames(activity_labels) <- c("activity_no","activity_label")
+### creating a new data frame (based on y_joint) based on the activity_label
+y_labels <- activity_labels$activity_label[match(y_joint[,1],activity_labels$activity_no)]
+y_desired <- cbind(y_labels,y_joint)
+### naming the columns of the y_desired data frame
+colnames(y_desired) <- c("activity_label","activity_no")
+
+
+#------------------------------------------------------------------------------
+## Step-4: Labelling the data and merging it into a single dataset
+
+### subject_joint
+colnames(subject_joint) <- "subject_no"
+
+### merging the data into a dataset
+data_combined <- cbind(subject_joint,y_desired,X_desired)
+
+
+#------------------------------------------------------------------------------
+## Step-5: Creating a tidy data set with the average of each variable for each 
+## activity and each subject.
+
+### converting the data_combined df into a data table.
+setDT(data_combined)
+
+### ordering the data in the data table based on the subject no. and then by activity no
+data_combined <- data_combined[order(subject_no,activity_no)]
+
+### making a new dataset by calculating means per subject_no and activity_label
+tidy_data <- data_combined[, lapply(.SD,mean), by=.(subject_no,activity_label)]
+
+### saving the tidy data set
+write.table(tidy_data, "tidy.txt", row.names = FALSE, quote = FALSE)
