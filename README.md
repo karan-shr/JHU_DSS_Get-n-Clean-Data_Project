@@ -68,5 +68,5 @@ is a R script to collect, work with, and clean a data set. The basic description
 6. Making the tidy data set and saving it as tidy.txt
   1. The *data_combined* data frame is converted into a data.table.
   2. The data table is then ordered firstly by the *subject_no* variable and then by the *activity_no* variable.
-  3. Using the powerful subseeting features of the data.table program a tidy data set is created in one statement and saved as a new data table called *tidy_data*.
+  3. Using the powerful subsetting features of the data.table program a tidy data set is created in one statement and saved as a new data table called *tidy_data*. A cheatsheet that will explain the data table syntax used here can be found [here] (http://www.r-bloggers.com/the-data-table-cheat-sheet/).
   4. The *tidy_data* is saved to a txt file.
