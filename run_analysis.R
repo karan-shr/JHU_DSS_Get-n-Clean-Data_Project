@@ -81,5 +81,5 @@ data_combined <- data_combined[order(subject_no,activity_no)]
 tidy_data <- data_combined[, lapply(.SD,mean), by=.(subject_no,activity_label)]
 
 ### saving the tidy data set
-setwd("..") # moving one folder level up
+setwd("..") #moving one folder level up 
 write.table(tidy_data, "tidy.txt", row.names = FALSE, quote = FALSE)

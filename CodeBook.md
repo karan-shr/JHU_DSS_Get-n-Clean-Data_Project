@@ -10,12 +10,12 @@ This code book summarizes the resulting data fields in `tidy.txt`.
 
 ## Activity Labels
 
-* "WALKING": subject was walking during the test
-* "WALKING_UPSTAIRS": subject was walking up a staircase during the test
-* "WALKING_DOWNSTAIRS": subject was walking down a staircase during the test
-* "SITTING": subject was sitting during the test
-* "STANDING": subject was standing during the test
-* "LAYING": subject was laying down during the test
+* "WALKING": subject was walking during the test.
+* "WALKING_UPSTAIRS": subject was walking up a staircase during the test.
+* "WALKING_DOWNSTAIRS": subject was walking down a staircase during the test.
+* "SITTING": subject was sitting during the test.
+* "STANDING": subject was standing during the test.
+* "LAYING": subject was laying down during the test.
 
 ## Measurements:
 The data set contains the mean values (calculated per subject and per activity) of the following variables:

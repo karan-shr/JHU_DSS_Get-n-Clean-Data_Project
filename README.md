@@ -65,6 +65,7 @@ is a R script to collect, work with, and clean a data set. The basic description
     3. Other data frames which are not required for further analyses steps are not given names.
     4. The data is merged into a single dataset(*data_combined*), in the following order: *subject_joint*,*y_desired* and *X_desired*. 
     
+    
 6. Making the tidy data set and saving it as tidy.txt
   1. The *data_combined* data frame is converted into a data.table.
   2. The data table is then ordered firstly by the *subject_no* variable and then by the *activity_no* variable.
